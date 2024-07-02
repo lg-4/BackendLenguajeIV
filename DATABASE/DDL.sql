@@ -1,28 +1,40 @@
 
 CREATE TABLE TIPOS_VEHICULOS (
     cod_tipo_vehiculo BIGINT AUTO_INCREMENT PRIMARY KEY,
-    nom_tipo_vehiculo VARCHAR(50)
+    nom_tipo_vehiculo VARCHAR(50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
 
 
 CREATE TABLE MARCAS (
     cod_marca BIGINT AUTO_INCREMENT PRIMARY KEY,
     cod_tipo_vehiculo BIGINT,
     nom_marca VARCHAR (50),
-    FOREIGN KEY (cod_tipo_vehiculo) REFERENCES TIPOS_VEHICULOS(cod_tipo_vehiculo)
+    FOREIGN KEY (cod_tipo_vehiculo) REFERENCES TIPOS_VEHICULOS(cod_tipo_vehiculo),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    updated_user VARCHAR (50)
 );
 
 
 CREATE TABLE TIPOS_TRANSMISIONES(
-     cod_tipo_transmision BIGINT AUTO_INCREMENT PRIMARY KEY,
-     nom_transmision VARCHAR (100)
+    cod_tipo_transmision BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nom_transmision VARCHAR (100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
 CREATE TABLE TIPOS_MANTENIMIENTOS(
-     cod_tipo_mantenimiento BIGINT AUTO_INCREMENT PRIMARY KEY,
-     nom_mantenimiento VARCHAR (50)
+    cod_tipo_mantenimiento BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nom_mantenimiento VARCHAR (50),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    updated_user USER DEFAULT CURRENT_USER
 );
+
 
 
 CREATE TABLE USUARIOS(
@@ -30,7 +42,9 @@ CREATE TABLE USUARIOS(
     nom_usuario VARCHAR(50),
     cor_usuario VARCHAR(20) UNIQUE,
     pas_usuario VARCHAR(30),
-    img_usuario LONGBLOB
+    img_usuario LONGBLOB,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
@@ -42,7 +56,9 @@ CREATE TABLE PROM_DESCUENTOS(
     cod_tipo_vehiculo BIGINT,
     cod_marca BIGINT,
     FOREIGN KEY (cod_tipo_vehiculo) REFERENCES TIPOS_VEHICULOS(cod_tipo_vehiculo),
-    FOREIGN KEY (cod_marca) REFERENCES MARCAS(cod_marca)
+    FOREIGN KEY (cod_marca) REFERENCES MARCAS(cod_marca),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
@@ -55,18 +71,22 @@ CREATE TABLE VEHICULOS(
     modelo VARCHAR(50),
     cod_tipo_transmision BIGINT,
     FOREIGN KEY (cod_marca) REFERENCES MARCAS(cod_marca),
-    FOREIGN KEY (cod_tipo_transmision) REFERENCES TIPOS_TRANSMISIONES(cod_tipo_transmision)
+    FOREIGN KEY (cod_tipo_transmision) REFERENCES TIPOS_TRANSMISIONES(cod_tipo_transmision),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
 CREATE TABLE MANTENIMIENTOS(
-     cod_mantenimiento BIGINT AUTO_INCREMENT PRIMARY KEY,
-     cod_vehiculo BIGINT,
-     cod_tipo_mantenimiento BIGINT,
-     descripcion VARCHAR(100),
-     fec_mantenimiento DATE,
-     FOREIGN KEY (cod_vehiculo) REFERENCES VEHICULOS(cod_vehiculo),
-     FOREIGN KEY (cod_tipo_mantenimiento) REFERENCES TIPOS_MANTENIMIENTOS(cod_tipo_mantenimiento)
+    cod_mantenimiento BIGINT AUTO_INCREMENT PRIMARY KEY,
+    cod_vehiculo BIGINT,
+    cod_tipo_mantenimiento BIGINT,
+    descripcion VARCHAR(100),
+    fec_mantenimiento DATE,
+    FOREIGN KEY (cod_vehiculo) REFERENCES VEHICULOS(cod_vehiculo),
+    FOREIGN KEY (cod_tipo_mantenimiento) REFERENCES TIPOS_MANTENIMIENTOS(cod_tipo_mantenimiento),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
@@ -76,7 +96,9 @@ CREATE TABLE RENDIMIENTOS(
     eficiencia VARCHAR(50),
     fec_prueba DATE,
     resultado VARCHAR(50),
-    FOREIGN KEY (cod_vehiculo) REFERENCES VEHICULOS(cod_vehiculo)
+    FOREIGN KEY (cod_vehiculo) REFERENCES VEHICULOS(cod_vehiculo),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
@@ -87,35 +109,43 @@ CREATE TABLE EVALUACIONES(
     fec_evaluacion DATE,
     cod_usuario BIGINT,
     FOREIGN KEY (cod_vehiculo) REFERENCES VEHICULOS(cod_vehiculo),
-    FOREIGN KEY (cod_usuario) REFERENCES USUARIOS(cod_usuario)
+    FOREIGN KEY (cod_usuario) REFERENCES USUARIOS(cod_usuario),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
 
 CREATE TABLE RESEÑAS(
- cod_resena BIGINT AUTO_INCREMENT PRIMARY KEY,
- cod_vehiculo BIGINT,
- cod_usuario BIGINT,
- calif_general VARCHAR(50),
- opinion VARCHAR(50),
- FOREIGN KEY (cod_vehiculo) REFERENCES VEHICULOS(cod_vehiculo),
- FOREIGN KEY (cod_usuario) REFERENCES USUARIOS(cod_usuario)
+    cod_resena BIGINT AUTO_INCREMENT PRIMARY KEY,
+    cod_vehiculo BIGINT,
+    cod_usuario BIGINT,
+    calif_general VARCHAR(50),
+    opinion VARCHAR(50),
+    FOREIGN KEY (cod_vehiculo) REFERENCES VEHICULOS(cod_vehiculo),
+    FOREIGN KEY (cod_usuario) REFERENCES USUARIOS(cod_usuario),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 
 CREATE TABLE ESTADISTICAS(
- cod_estadistica BIGINT AUTO_INCREMENT PRIMARY KEY,
- cod_vehiculo BIGINT,
- nom_estadistica VARCHAR(100),
- valor VARCHAR(100),
- fec_estadistica DATE,
- FOREIGN KEY (cod_vehiculo) REFERENCES VEHICULOS(cod_vehiculo)
+    cod_estadistica BIGINT AUTO_INCREMENT PRIMARY KEY,
+    cod_vehiculo BIGINT,
+    nom_estadistica VARCHAR(100),
+    valor VARCHAR(100),
+    fec_estadistica DATE,
+    FOREIGN KEY (cod_vehiculo) REFERENCES VEHICULOS(cod_vehiculo),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE HISTORIALES(
- cod_historial BIGINT AUTO_INCREMENT PRIMARY KEY,
- cod_vehiculo BIGINT,
- precio DOUBLE,
- tendencia VARCHAR(100),
- FOREIGN KEY (cod_vehiculo) REFERENCES VEHICULOS(cod_vehiculo)
+    cod_historial BIGINT AUTO_INCREMENT PRIMARY KEY,
+    cod_vehiculo BIGINT,
+    precio DOUBLE,
+    tendencia VARCHAR(100),
+    FOREIGN KEY (cod_vehiculo) REFERENCES VEHICULOS(cod_vehiculo),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
