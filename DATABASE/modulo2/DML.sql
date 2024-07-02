@@ -1,3 +1,4 @@
+-- Active: 1718679611763@@142.44.161.115@3306
 
 CREATE PROCEDURE InsertTipoVehiculo(IN nom_tipo VARCHAR(50))
 BEGIN
@@ -7,7 +8,7 @@ END;
 
 
 
-call InsertTipoVehiculo('Pickup');
+call InsertTipoVehiculo('Camioneta');
 
 
 
@@ -17,4 +18,4 @@ BEGIN
     where cod_tipo_vehiculo = cod_tipo;
 END;
 
-CALL UpdateTipoVehiculo ('Pickup', 3);
+CALL UpdateTipoVehiculo ('mundo', 1);
