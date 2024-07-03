@@ -37,10 +37,11 @@ CALL UpdateVehiculos('2024', '2.0L Turbo', '250 HP', 3, 'Corolla', 2, 1);
 
 CREATE PROCEDURE SelectVehiculos()
     BEGIN
-        SELECT v.cod_vehiculo, v.año_vehiculo, v.mot_vehiculo, v.pot_vehiculo, m.nom_marca, v.modelo, t.nom_transmision, v.img_vehiculo
+        SELECT v.cod_vehiculo, v.año_vehiculo, v.mot_vehiculo, v.pot_vehiculo, m.nom_marca, v.modelo, t.nom_transmision, v.img_vehiculo, tv.nom_tipo_vehiculo
         FROM VEHICULOS v
         INNER JOIN MARCAS m ON v.cod_marca = m.cod_marca
-        INNER JOIN TIPOS_TRANSMISIONES t ON v.cod_tipo_transmision = t.cod_tipo_transmision;
+        INNER JOIN TIPOS_TRANSMISIONES t ON v.cod_tipo_transmision = t.cod_tipo_transmision
+        INNER JOIN TIPOS_VEHICULOS tv ON m.cod_tipo_vehiculo= tv.cod_tipo_vehiculo;
     END;
 
     CALL SelectVehiculos();
@@ -51,10 +52,11 @@ CREATE PROCEDURE SelectVehiculos()
 
 CREATE PROCEDURE SelectVehiculo(IN p_modelo VARCHAR(50), IN p_marca VARCHAR(100))
     BEGIN
-        SELECT v.cod_vehiculo, v.año_vehiculo, v.mot_vehiculo, v.pot_vehiculo, m.nom_marca, v.modelo, t.nom_transmision, v.img_vehiculo
+        SELECT v.cod_vehiculo, v.año_vehiculo, v.mot_vehiculo, v.pot_vehiculo, m.nom_marca, v.modelo, t.nom_transmision, v.img_vehiculo, tv.nom_tipo_vehiculo
         FROM VEHICULOS v
         INNER JOIN MARCAS m ON v.cod_marca = m.cod_marca
         INNER JOIN TIPOS_TRANSMISIONES t ON v.cod_tipo_transmision = t.cod_tipo_transmision
+        INNER JOIN TIPOS_VEHICULOS tv ON m.cod_tipo_vehiculo= tv.cod_tipo_vehiculo
        WHERE 
         (v.modelo = p_modelo OR p_modelo IS NULL)
         AND 
