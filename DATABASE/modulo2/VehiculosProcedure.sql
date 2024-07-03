@@ -6,12 +6,7 @@ CREATE PROCEDURE InsertVehiculos(IN p_año_veh VARCHAR(4), IN p_mot_veh VARCHAR(
     COMMIT;
     END;
 
-CALL InsertVehiculos('2024', '2.0L Turbo', '250 HP', 3, 'Corolla', 2 );
-CALL InsertVehiculos('2023', 'V6 3.5L', '300 HP', 4, 'Mustang', 1);
-CALL InsertVehiculos('2022', 'Eléctrico', '150 kW', 5, 'i3', 2);
-CALL InsertVehiculos('2021', 'Híbrido 2.5L', '200  HP', 2, 'Accord', 3);
-CALL InsertVehiculos('2024', 'V8 5.0L', '450  HP', 6, 'Silverado', 2);
-CALL InsertVehiculos('2023', '1.8L', '140  HP', 7, 'Golf', 1);
+
 CALL InsertVehiculos('2022', 'Eléctrico', '225 kW', 8, 'Model 3', 2);
 
 
