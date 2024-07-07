@@ -47,7 +47,7 @@ CREATE PROCEDURE SelectVehiculos()
         FROM VEHICULOS v
         INNER JOIN MARCAS m ON v.cod_marca = m.cod_marca
         INNER JOIN TIPOS_TRANSMISIONES t ON v.cod_tipo_transmision = t.cod_tipo_transmision
-        INNER JOIN TIPOS_VEHICULOS tv ON m.cod_tipo_vehiculo= tv.cod_tipo_vehiculo;
+        INNER JOIN TIPOS_VEHICULOS tv ON m.cod_tipo_vehiculo = tv.cod_tipo_vehiculo;
     END;
 
     CALL SelectVehiculos();
