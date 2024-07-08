@@ -1,5 +1,6 @@
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 CREATE PROCEDURE InsertEstadisticas( p_cod_veh BIGINT, nom_est VARCHAR(100), IN valor_est VARCHAR(100), fec_est DATE)
 BEGIN
     START TRANSACTION;
@@ -7,6 +8,16 @@ BEGIN
     COMMIT;
 END;
 CALL InsertEstadisticas( 5, 'SOBRESALIENTE', '10', '2024-07-20');
+=======
+-- PROCEDURE para insertar estadísticas
+CREATE PROCEDURE InsertEstadisticas(IN p_cod_est BIGINT, p_cod_veh BIGINT, nom_est VARCHAR(100), IN valor_est VARCHAR(100), fec_est DATE)
+BEGIN
+    START TRANSACTION; -- Inicia la transacción 
+    INSERT INTO `ESTADISTICAS` (cod_estadistica, cod_vehiculo, nom_estadistica, valor, fec_estadistica) VALUES (p_cod_est, p_cod_veh, nom_est, valor_est, fec_est); -- Inserta los valores proporcionados
+    COMMIT; -- Confirma la transacción
+END;
+CALL InsertEstadisticas(3, 1, 'MALO', '2', '2024-07-06'); -- Ejecuta la inserción 
+>>>>>>> 19814da673091c1c2e2a5a7116c8aedd8142cc3a
 =======
 -- PROCEDURE para insertar estadísticas
 CREATE PROCEDURE InsertEstadisticas(IN p_cod_est BIGINT, p_cod_veh BIGINT, nom_est VARCHAR(100), IN valor_est VARCHAR(100), fec_est DATE)
@@ -31,8 +42,12 @@ CREATE PROCEDURE UpdateEstadisticas(p_cod_veh BIGINT, nom_est VARCHAR(100), IN v
     END; 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 CALL UpdateEstadisticas(5, 'PROMEDIO', '6', '2024-06-20', 13); 
 
+=======
+CALL UpdateEstadisticas(1, 'EXELENTE', '10', '2024-07-06', 1); -- Ejecuta la actualización 
+>>>>>>> 19814da673091c1c2e2a5a7116c8aedd8142cc3a
 =======
 CALL UpdateEstadisticas(1, 'EXELENTE', '10', '2024-07-06', 1); -- Ejecuta la actualización 
 >>>>>>> 19814da673091c1c2e2a5a7116c8aedd8142cc3a
@@ -41,6 +56,7 @@ CALL UpdateEstadisticas(1, 'EXELENTE', '10', '2024-07-06', 1); -- Ejecuta la act
 CREATE PROCEDURE SelectEstadisticas()
 BEGIN
     SELECT 
+<<<<<<< HEAD
 <<<<<<< HEAD
         e.cod_estadistica,
         v.modelo,
@@ -51,6 +67,8 @@ BEGIN
     INNER JOIN VEHICULOS v ON e.cod_vehiculo = v.cod_vehiculo
     ORDER BY e.cod_estadistica;
 =======
+=======
+>>>>>>> 19814da673091c1c2e2a5a7116c8aedd8142cc3a
         v.cod_estadistica, -- Código de la estadística
         v.nom_estadistica, -- Nombre de la estadística
         v.valor,           -- Valor de la estadística
@@ -58,6 +76,9 @@ BEGIN
     FROM ESTADISTICAS v 
     INNER JOIN VEHICULOS a ON v.cod_vehiculo = a.cod_vehiculo -- Realiza un JOIN con la tabla VEHICULOS
     ORDER BY v.cod_estadistica; -- Ordena los resultados por código de estadística
+<<<<<<< HEAD
+>>>>>>> 19814da673091c1c2e2a5a7116c8aedd8142cc3a
+=======
 >>>>>>> 19814da673091c1c2e2a5a7116c8aedd8142cc3a
 END;
 
