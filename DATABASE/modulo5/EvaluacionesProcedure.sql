@@ -6,7 +6,7 @@ BEGIN
     COMMIT;
 END;
 
-CALL InsertEvaluaciones(1, 1, 4.5, '2024-07-06', 2);
+CALL InsertEvaluaciones(2, 1, 7, '2024-07-07', 2);
 
 
 CREATE PROCEDURE UpdateEvaluaciones(IN p_cod_veh BIGINT, IN result_eva VARCHAR(50), IN fec_eva DATE, IN p_cod_usuario BIGINT, IN p_cod_eva BIGINT)
@@ -20,7 +20,7 @@ BEGIN
     COMMIT;
 END;
 
-CALL UpdateEvaluaciones(1, '5.5', '2024-07-06', 2, 1);
+CALL UpdateEvaluaciones(1, '8.5', '2024-07-07', 2, 2);
 
 
 CREATE PROCEDURE SelectEvaluaciones()
