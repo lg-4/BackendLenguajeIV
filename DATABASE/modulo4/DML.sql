@@ -7,7 +7,7 @@ CREATE PROCEDURE InsertPromDescuentos(IN P_Fec_pro Date, IN P_Promo Float, IN P_
         COMMIT;
     END;
 
-    call InsertPromDescuentos('2024-07-03', 10, 2, 'Hoy', 1, 2);
+    call InsertPromDescuentos('2024-07-07', 10, 2, 'martes', 1, 2);
 
 
 
@@ -23,7 +23,10 @@ CALL UpdatePromDescuentos ('2024-07-03', 10, 2, 'Lunes', 1, 2, 2);
 
 CREATE PROCEDURE SelectPromDescuentos()
     BEGIN
-        SELECT cod_tipo_mantenimiento, nom_mantenimiento FROM TIPOS_MANTENIMIENTOS ORDER BY nom_mantenimiento;
+        SELECT PM.fec_prom, PM.promocion, PM.descuento, PM.disponibilidad, t_v.nom_tipo_vehiculo, m.nom_marca
+        FROM PROM_DESCUENTOS PM
+        INNER JOIN MARCAS m ON PM.cod_marca = m.cod_marca
+        INNER JOIN TIPOS_VEHICULOS t_v ON PM.cod_tipo_vehiculo = t_v.cod_tipo_vehiculo;
     END;
 
-CALL SelectTipoMantenimientos();
+CALL SelectPromDescuentos();
