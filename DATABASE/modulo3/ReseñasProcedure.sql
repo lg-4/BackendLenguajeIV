@@ -20,9 +20,9 @@ CREATE PROCEDURE UpdateReseñas(in p_cod_veh BIGINT, in p_cod_usuario BIGINT, in
 
 call `UpdateReseñas`( 2, 2, 1, 'Se apaga', 2);
 
-CREATE PROCEDURE SelectReseñas2()
+CREATE PROCEDURE SelectReseñas()
     BEGIN
-        SELECT v.modelo, u.nom_usuario, r.calif_general , r.opinion
+        SELECT r.cod_resena, v.modelo, u.nom_usuario, r.calif_general , r.opinion
         FROM `RESEÑAS` r
         INNER JOIN `VEHICULOS` v ON r.cod_vehiculo = v.cod_vehiculo
         INNER JOIN `USUARIOS` u ON r.cod_usuario = u.cod_usuario;
