@@ -29,3 +29,4 @@ CREATE PROCEDURE SelectReseñas()
     END;
 
 CALL SelectReseñas();
+
