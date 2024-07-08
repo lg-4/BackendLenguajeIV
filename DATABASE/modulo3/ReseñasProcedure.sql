@@ -20,7 +20,7 @@ CREATE PROCEDURE UpdateReseñas(in p_cod_veh BIGINT, in p_cod_usuario BIGINT, in
 
 call `UpdateReseñas`( 2, 2, 1, 'Se apaga', 2);
 
-CREATE PROCEDURE SelectReseñas()
+CREATE PROCEDURE SelectReseñas2()
     BEGIN
         SELECT v.modelo, u.nom_usuario, r.calif_general , r.opinion
         FROM `RESEÑAS` r
