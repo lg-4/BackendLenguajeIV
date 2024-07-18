@@ -41,13 +41,12 @@ npm run dev
 
 ## Desarrolladores
 - **[@CarLuis07](https://github.com/CarLuis07/)  - Luis Cardona - `kikecar97@gmail.com`**
-- **[@modulo1](https://github.com/)  - Modulo1 - `correo@gmail.com`**
-- **[@modulo3](https://github.com/)  - Modulo3 - `correo@gmail.com`**
-- **[@modulo3](https://github.com/)  - Modulo3 - `correo@gmail.com`**
-- **[@modulo4](https://github.com/)  - Modulo4 - `correo@gmail.com`**
-- **[@modulo4](https://github.com/)  - Modulo4 - `correo@gmail.com`**
-- **[@modulo5](https://github.com/)  - Modulo5 - `correo@gmail.com`**
-- **[@modulo5](https://github.com/)  - Modulo5 - `correo@gmail.com`**
+- **[@LalanSu](https://github.com/LalanSu)  - Allan Suazo  - `allansuazo.aesa@gmail.com`**
+- **[@Sarahi-26](https://github.com/Sarahi-26)  - Alezandra valladares - `alezandravalladares@gmail.com`**
+- **[@diegoespinal20re](https://github.com/diegoespinal20re)  - Diego Espinal - `diegoespinalp@gmail.com`**
+- **[@EmelyEspinal10](https://github.com/EmelyEspinal10)  - Emely Espinal - `emelyespinalgali2002@gmail.com `**
+- **[@yoeniC](https://github.com/yoeniC)  - yoeni Coello - `alfonsocoello6@gmail.com`**
+- **[@DenisEspinal](https://github.com/DenisEspinal)  - Denis Espinal - `espinaldenis09@gmail.com`**
 
 
 ### Colaboradores
