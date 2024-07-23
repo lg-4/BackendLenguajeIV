@@ -1,12 +1,18 @@
 import mysql from 'mysql'
+import dotenv from 'dotenv'
+dotenv.config()
 
+const host = process.env.HOST 
+const user = process.env.USER
+const password = process.env.PASS
+const database = process.env.DATABASE  
 
 const  mysqlConnection = mysql.createConnection({
 
-    host: '142.44.161.115',
-    user: '1900Pac2Equ3',
-    password: '1900Pac2Equ3#88',
-    database: '1900Pac2Equ3',
+    host: host,
+    user: user,
+    password: password+'#88',
+    database: database,
     multipleStatements: false
 })
 
