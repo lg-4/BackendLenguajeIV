@@ -1,8 +1,9 @@
 import Express from 'express'
 const apiVehiculos = Express();
 
-import { getVehiculos } from '../controllers/CompararVehiculoController.js'
+import { getVehiculos, postVehiculos } from '../controllers/CompararVehiculoController.js'
 
 apiVehiculos.get('', getVehiculos)
+apiVehiculos.post('', postVehiculos)
 
 export {apiVehiculos}

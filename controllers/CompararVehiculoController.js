@@ -1,7 +1,7 @@
 import { mysqlConnection } from "../DATABASE/conexion.js"
 
 const getVehiculos= async (_, res) => {
-    mysqlConnection.query('CALL SelectVehiculos()', (err, rows, fields) => {
+     mysqlConnection.query (await 'CALL SelectVehiculos()', (err, rows, fields) => {
         if (!err) {
             res.status(200).json(rows[0]);
         } else {
@@ -10,5 +10,28 @@ const getVehiculos= async (_, res) => {
     });
 }
 
+const postVehiculos = async (req, res) => {
+    const params = [
+        req.body.year,
+        req.body.motor,
+        req.body.potence,
+        req.body.marc,
+        req.body.model,
+        req.body.typeTransmition
+    ];
 
-export{getVehiculos}
+    const query = 'CALL InsertVehiculos(?, ?, ?, ?, ?, ?)';
+    mysqlConnection.query(query, params, (err, result) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).json({ msg: 'Error al insertar el vehículo' });
+        } else {
+            res.json({
+                result,
+                msg: 'Vehículo insertado correctamente'
+            });
+        }
+    });
+};
+
+export{getVehiculos, postVehiculos}
