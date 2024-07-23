@@ -1,29 +1,26 @@
-import mysql from 'mysql'
-import dotenv from 'dotenv'
-dotenv.config()
+import mysql from 'mysql';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const host = process.env.HOST 
-const user = process.env.USER
-const password = process.env.PASS
-const database = process.env.DATABASE  
-
-const  mysqlConnection = mysql.createConnection({
-
-    host: host,
-    user: user,
-    password: password+'#88',
-    database: database,
+const dbConfig = {
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: `${process.env.PASS}#88`,
+    database: process.env.DATABASE,
     multipleStatements: false
-})
+};
 
-mysqlConnection.connect((err)=>{
-    if (!err) {
-        console.log('Conexion Exitosa')
-    } else {
+const mysqlConnection = mysql.createConnection(dbConfig);
 
-        console.log('Error al conectar a la DB')
+const connectToDatabase = async () => {
+    try {
+        await mysqlConnection.connect();
+        console.log('Conexión Exitosa');
+    } catch (err) {
+        console.error('Error al conectar a la DB:', err.message);
     }
-})
+};
 
+connectToDatabase();
 
-export{mysqlConnection}
+export { mysqlConnection };
