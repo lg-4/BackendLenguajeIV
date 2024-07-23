@@ -1,8 +1,9 @@
 import Express from 'express'
 const apiEstadisticas = Express();
 
-import { getEstadisticas } from '../controllers/EstadisticasController.js'
+import { getEstadisticas, postEstadisticas  } from '../controllers/EstadisticasController.js'
 
 apiEstadisticas.get('', getEstadisticas)
+apiEstadisticas.post('', postEstadisticas)
 
 export {apiEstadisticas}
