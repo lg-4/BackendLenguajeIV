@@ -1,5 +1,7 @@
 import { mysqlConnection } from "../DATABASE/conexion.js";
 import { redisClient } from "../redis.js";
+import { promisify } from 'util';
+
 
 // Función para ejecutar consultas MySQL con Promesas
 const queryDatabase = (query, params = []) => {
@@ -13,21 +15,24 @@ const queryDatabase = (query, params = []) => {
     });
 };
 
+const GET_ASYNC = promisify(redisClient.get).bind(redisClient)
+const SET_ASYNC = promisify(redisClient.set).bind(redisClient)
+
 const getVehiculos = async (_, res) => {
     try {
-        redisClient.get("vehiculos", async (_, reply)=>{
-            if (reply){
-                return res.json(JSON.parse(reply))
-            }
-            const rows = await queryDatabase('CALL SelectVehiculos()');
+
+        const reply = await GET_ASYNC("vehiculos")
+        if(reply){
+            return res.json(JSON.parse(reply))
+        }
+        
+        const rows = await queryDatabase('CALL SelectVehiculos()');
            
-            redisClient.set("vehiculos", JSON.stringify(rows[0]), (err, reply)=>{
-                res.status(200).json(rows[0]);
-            });
-        })
-    } catch (err) {
-        console.error('Error al obtener vehículos:', err);
-        res.status(500).json({ msg: 'Error al obtener vehículos' });
+        reply = await SET_ASYNC("vehiculos", JSON.stringify(rows))
+        res.status(200).json(rows);
+
+     } catch (err) {
+        res.status(500).json({ msg: 'Error al obtener vehículos', err });
     }
 };
 
