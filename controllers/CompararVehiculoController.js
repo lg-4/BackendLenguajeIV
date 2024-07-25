@@ -27,11 +27,28 @@ const postVehiculos = async (req, res) => {
             res.status(500).json({ msg: 'Error al insertar el vehículo' });
         } else {
             res.json({
-                result,
-                msg: 'Vehículo insertado correctamente'
+                result
             });
         }
     });
 };
 
-export{getVehiculos, postVehiculos}
+const getVehiculo= async (req, res) => {
+    const params = [
+        req.params.search,
+    ];
+
+    const query = ' CALL SelectBuscarVehiculo(?);'
+    mysqlConnection.query(query, params, (err, result) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).json({ msg: 'Error al buscar el vehículo' });
+        } else {
+            res.json({
+                result
+            });
+        }
+   });
+}
+
+export{getVehiculos, postVehiculos, getVehiculo}
