@@ -1,4 +1,4 @@
--- Active: 1718735124373@@142.44.161.115@3306@1900Pac2Equ3
+-- Active: 1718683999314@@142.44.161.115@3306@1900Pac2Equ3
 
 
 -- Procedimiento para insertar estadísticas
@@ -7,6 +7,9 @@ CREATE PROCEDURE InsertEstadisticas( p_cod_veh BIGINT, nom_est VARCHAR(100), IN 
         START TRANSACTION; -- Inicia la transacción
             INSERT INTO `ESTADISTICAS` ( cod_vehiculo, nom_estadistica, valor, fec_estadistica) VALUES ( p_cod_veh, nom_est, valor_est, fec_est); -- Inserta nueva fila de estadística
         COMMIT; -- Confirma la transacción para hacer los cambios permanentes en la base de datos
+        
+    SELECT * FROM ESTADISTICAS ORDER BY cod_vehiculo DESC LIMIT 1;
+
 END;
 
 CALL InsertEstadisticas(3, 'BUENO', '7', '2024-07-08'); --llamada al procedimiento InsertEstadisticas
@@ -42,3 +45,17 @@ BEGIN
 END;
 
 CALL SelectEstadisticas(); --llamada al procedimiento SelectEstadisticas
+
+CREATE PROCEDURE SelectEstadisticas2() 
+BEGIN
+    SELECT 
+        h.cod_historial,
+        v.modelo,
+        h.precio,
+        h.tendencia
+    FROM HISTORIALES h
+    INNER JOIN VEHICULOS v ON h.cod_vehiculo = v.cod_vehiculo 
+    ORDER BY h.cod_historial;
+END;
+
+CALL SelectEstadisticas2(); 

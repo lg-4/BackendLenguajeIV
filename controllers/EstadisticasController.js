@@ -34,4 +34,15 @@ const postEstadisticas = async (req, res) => {
 };
 
 
-export{getEstadisticas, postEstadisticas}
+const getEstadisticas2= async (_, res) => {
+    mysqlConnection.query('CALL SelectEstadisticas2()', (err, rows, fields) => {
+        if (!err) {
+            res.status(200).json(rows[0]);
+        } else {
+            console.log(err);
+        }
+    });
+}
+
+
+export{getEstadisticas, postEstadisticas, getEstadisticas2}
