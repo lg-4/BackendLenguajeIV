@@ -22,6 +22,7 @@ para ejecutar este proyecto
 2. abralo con un editor de texto como visual Studio Code.
 3. descargue las dependencias del poyecto, en la `consola de VSC ejecute:`
 
+
 ```bash
 npm i
 ```
@@ -29,7 +30,18 @@ npm i
 necesitará 4 variables para la conexion: 
 `_USER, HOST, PASS, DATABASE, PORT`
 
-5. ejecutar en la consola de VSC
+
+5. instale redis con docker
+```bash
+docker run -p 6379:6379 --name redisDocker -d redis
+```
+6. instale redis commander
+```bash
+ npm i -g redis-commander
+```
+
+
+7. ejecutar en la consola de VSC
 ```bash
 npm run dev
 ```
