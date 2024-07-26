@@ -10,7 +10,6 @@ CREATE PROCEDURE InsertMantenimientos( p_cod_veh BIGINT, p_cod_tipo BIGINT, IN d
 call InsertMantenimientos( 1, 4, 'cambio filtro aceite', '2024-07-16');
 
 
-
 CREATE PROCEDURE UpdateMantenimientos(p_cod_veh BIGINT, p_cod_tipo BIGINT, IN descrip_mante VARCHAR(50), fec_mante DATE, IN p_cod_mante BIGINT)
     BEGIN
     START TRANSACTION;
