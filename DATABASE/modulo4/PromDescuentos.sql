@@ -43,3 +43,18 @@ CREATE PROCEDURE SelectPromDescuentos()
 
 --ejemplo de llamado del procedimiento
 CALL SelectPromDescuentos();
+
+
+-- Procedimiento almacenado para seleccionar la información de las tablas de Vehiculo, Marcas Y historial
+CREATE PROCEDURE SelectPromDescuentos()
+    BEGIN
+        -- Selecciona y devuelve información de la tabla Prom_descuentos junto con datos relacionados de otras tablas
+        SELECT PM.fec_prom, PM.promocion, PM.descuento, PM.disponibilidad, t_v.nom_tipo_vehiculo, m.nom_marca
+        FROM PROM_DESCUENTOS PM
+        INNER JOIN MARCAS m ON PM.cod_marca = m.cod_marca
+        INNER JOIN TIPOS_VEHICULOS t_v ON PM.cod_tipo_vehiculo = t_v.cod_tipo_vehiculo;
+        INNER JOIN HISTORIALES HS ON 
+    END;
+
+--ejemplo de llamado del procedimiento
+CALL SelectPromDescuentos();
