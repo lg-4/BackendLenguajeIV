@@ -129,6 +129,26 @@ const getResenias= async (_, res) => {
     });
 }
 
+const postResenias = async (req, res) => {
+    const params = [ 
+        req.body.Modelo,
+        req.body.Usuario,
+        req.body.CalificacionGeneral,
+        req.body.Opinion,
+    ];
 
+    const query = 'call `InsertReseñas`(?, ?, ?, ?)';
+    mysqlConnection.query(query, params, (err, result) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).json({ msg: 'Error al insertar Reseña' });
+        } else {
+            res.json({
+                result,
+                msg: 'Reseña insertada correctamente'
+            });
+        }
+    });
+};
 
-export{getEstadisticas, postEstadisticas, getEstadisticas2, getMantenimientos, postMantenimientos, getEvaluaciones, postEvaluaciones, getResenias}
+export{getEstadisticas, postEstadisticas, getEstadisticas2, getMantenimientos, postMantenimientos, getEvaluaciones, postEvaluaciones, getResenias, postResenias}
