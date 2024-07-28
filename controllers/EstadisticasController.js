@@ -81,7 +81,9 @@ const postMantenimientos = async (req, res) => {
     });
 };
 
-//-------------------------------------EVALIACIONES-----------------------------------------
+//------------------------------------------------------------------------------------------
+
+//-------------------------------------EVALUACIONES-----------------------------------------
 const getEvaluaciones= async (_, res) => {
     mysqlConnection.query('CALL SelectEvaluaciones()', (err, rows, fields) => {
         if (!err) {
@@ -91,7 +93,6 @@ const getEvaluaciones= async (_, res) => {
         }
     });
 }
-
 
 const postEvaluaciones = async (req, res) => {
     const params = [ 
@@ -115,10 +116,19 @@ const postEvaluaciones = async (req, res) => {
     });
 };
 
+//------------------------------------------------------------------------------------------
+
+//--------------------------------------RESEÑAS---------------------------------------------
+const getResenias= async (_, res) => {
+    mysqlConnection.query('CALL SelectReseñas()', (err, rows, fields) => {
+        if (!err) {
+            res.status(200).json(rows[0]);
+        } else {
+            console.log(err);
+        }
+    });
+}
 
 
 
-
-
-
-export{getEstadisticas, postEstadisticas, getEstadisticas2, getMantenimientos, postMantenimientos, getEvaluaciones, postEvaluaciones}
+export{getEstadisticas, postEstadisticas, getEstadisticas2, getMantenimientos, postMantenimientos, getEvaluaciones, postEvaluaciones, getResenias}
