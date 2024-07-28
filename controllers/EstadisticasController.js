@@ -71,11 +71,11 @@ const postMantenimientos = async (req, res) => {
     mysqlConnection.query(query, params, (err, result) => {
         if (err) {
             console.error('Error al ejecutar la consulta:', err);
-            res.status(500).json({ msg: 'Error al insertar Estadistica' });
+            res.status(500).json({ msg: 'Error al insertar Mantenimientos' });
         } else {
             res.json({
                 result,
-                msg: 'Estadistica insertada correctamente'
+                msg: 'Mantenimientos insertada correctamente'
             });
         }
     });
