@@ -1,5 +1,4 @@
--- Active: 1718683999314@@142.44.161.115@3306@1900Pac2Equ3
-CREATE PROCEDURE SelectEspecificaciones()-- Procedimiento para seleccionar estadísticas
+CREATE PROCEDURE SelecEspecificaciones()-- Procedimiento para seleccionar estadísticas
 BEGIN
     SELECT 
         v.cod_vehiculo,
@@ -11,4 +10,4 @@ BEGIN
     ORDER BY v.cod_vehiculo;
 END;
 
-CALL SelectEspecificaciones();
+CALL SelecEspecificaciones();

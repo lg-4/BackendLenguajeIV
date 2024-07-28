@@ -59,19 +59,3 @@ BEGIN
 END;
 
 CALL SelectEstadisticas2(); 
-------------------------------------------------------------------------------------
-
---------------------------prueba------------------------------------------------
-CREATE PROCEDURE SelectPromVehiculo() 
-BEGIN
-    SELECT 
-        pd.cod_promo,
-        pd.fec_prom,
-        h.precio,
-        h.tendencia
-    FROM HISTORIALES h
-    INNER JOIN VEHICULOS v ON h.cod_vehiculo = v.cod_vehiculo 
-    ORDER BY h.cod_historial;
-END;
-
-CALL SelectPromVehiculo(); 
