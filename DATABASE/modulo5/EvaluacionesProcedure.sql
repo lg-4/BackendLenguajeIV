@@ -1,12 +1,12 @@
 -- PROCEDURE para insertar evaluaciones
-CREATE PROCEDURE InsertEvaluaciones(IN p_cod_eva BIGINT, IN p_cod_veh BIGINT, IN resul_eva FLOAT, IN fec_eva DATE,IN p_cod_usuario BIGINT)
+CREATE PROCEDURE InsertEvaluaciones( IN p_cod_veh BIGINT, IN resul_eva FLOAT, IN fec_eva DATE, IN p_cod_usuario BIGINT)
 BEGIN
     START TRANSACTION; -- Inicia la transacción 
-    INSERT INTO `EVALUACIONES` (cod_evaluacion, cod_vehiculo, resul_evaluacion, fec_evaluacion, cod_usuario) VALUES (p_cod_eva, p_cod_veh, resul_eva, fec_eva, p_cod_usuario); -- Inserta los valores proporcionados
+    INSERT INTO `EVALUACIONES` (cod_vehiculo, resul_evaluacion, fec_evaluacion, cod_usuario) VALUES ( p_cod_veh, resul_eva, fec_eva, p_cod_usuario); -- Inserta los valores proporcionados
     COMMIT; -- Confirma la transacción
 END;
 
-CALL InsertEvaluaciones(2, 1, 7, '2024-07-07', 2); -- Ejecuta la inserción 
+CALL InsertEvaluaciones( 21, 8, '2024-07-27', 2); -- Ejecuta la inserción 
 
 -- PROCEDURE para actualizar evaluaciones
 CREATE PROCEDURE UpdateEvaluaciones(IN p_cod_veh BIGINT, IN result_eva VARCHAR(50), IN fec_eva DATE, IN p_cod_usuario BIGINT, IN p_cod_eva BIGINT)

@@ -81,8 +81,44 @@ const postMantenimientos = async (req, res) => {
     });
 };
 
+//-------------------------------------EVALIACIONES-----------------------------------------
+const getEvaluaciones= async (_, res) => {
+    mysqlConnection.query('CALL SelectEvaluaciones()', (err, rows, fields) => {
+        if (!err) {
+            res.status(200).json(rows[0]);
+        } else {
+            console.log(err);
+        }
+    });
+}
+
+
+const postEvaluaciones = async (req, res) => {
+    const params = [ 
+        req.body.Modelo,
+        req.body.Evaluacion,
+        req.body.FechaEvaluacion,
+        req.body.Usuario,
+    ];
+
+    const query = 'CALL InsertEvaluaciones(?, ?, ?, ?)';
+    mysqlConnection.query(query, params, (err, result) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).json({ msg: 'Error al insertar Evaluacion' });
+        } else {
+            res.json({
+                result,
+                msg: 'Evaluacion insertada correctamente'
+            });
+        }
+    });
+};
 
 
 
 
-export{getEstadisticas, postEstadisticas, getEstadisticas2, getMantenimientos, postMantenimientos}
+
+
+
+export{getEstadisticas, postEstadisticas, getEstadisticas2, getMantenimientos, postMantenimientos, getEvaluaciones, postEvaluaciones}
