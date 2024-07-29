@@ -1,4 +1,7 @@
 import Express from 'express'
+import cookieParser from 'cookie-parser'
+
+
 import { apiVehiculos } from './Routes/CompararVehiculosRoutes.js'
 import { apiEstadisticas } from './Routes/EstadisticasRoutes.js'
 import { apiEstadisticas2 } from './Routes/EstadisticasRoutes.js'
@@ -9,12 +12,13 @@ import { apiMarcas } from './Routes/MarcasRoutes.js'
 import { apiEvaluaciones } from './Routes/EstadisticasRoutes.js'
 import { apiResenias } from './Routes/EstadisticasRoutes.js'
 import { apiRendimientos } from './Routes/MarcasRoutes.js'
+import {authRouter} from './Routes/auth.js'
 
 
 const app = Express()
 
 app.use(Express.json())
-
+app.use(cookieParser())
 
 app.use('/Comparar-vehiculos', apiVehiculos)
 app.use('/MostrarEstadisticas', apiEstadisticas)
@@ -36,6 +40,26 @@ app.use('/mostrar-marcas', apiMarcas)
 app.use('/mostrar-valuaciones', apiEvaluaciones)
 app.use('/mostrar-resenias', apiResenias)
 app.use('/mostrarRendimientos', apiRendimientos)
+app.use('/auth', authRouter)
 
 app.listen(3000)
 console.log('puerto 3000 activo') 
+
+
+
+app.get('/', (_, res)=>{ 
+    res.send(`<html>
+   <head>
+       <title>Login</title>
+   </head>
+   <body>
+       <form method= POST action="/auth">
+       nombre de usuario: <input type="text" name="user">
+       <br>
+       contraseña:<input type="password" name="pass">
+       <br>
+       <input type="submit" value="Iniciar Sesion"/>
+       </form>
+   </body> 
+</html>`) 
+})
