@@ -8,6 +8,7 @@ import { apiEspecificaciones } from './Routes/EspecificacionesRoutes.js'
 import { apiMarcas } from './Routes/MarcasRoutes.js'
 import { apiEvaluaciones } from './Routes/EstadisticasRoutes.js'
 import { apiResenias } from './Routes/EstadisticasRoutes.js'
+import { apiRendimientos } from './Routes/MarcasRoutes.js'
 
 
 const app = Express()
@@ -23,6 +24,7 @@ app.use('/MostrarEspecificaciones', apiEspecificaciones)
 app.use('/MostrarMarcas', apiMarcas)
 app.use('/MostrarEvaluaciones', apiEvaluaciones)
 app.use('/MostrarResenias', apiResenias)
+app.use('/MostrarRendimientos', apiRendimientos)
 
 app.listen(3000)
 console.log('puerto 3000 activo') 

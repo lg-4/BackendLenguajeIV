@@ -1,9 +1,14 @@
 import Express from 'express'
-import {getMarcas, postMarcas} from '../controllers/MarcasController.js'
+import {getMarcas, postMarcas, getRendimientos, postRendimientos} from '../controllers/MarcasController.js'
 
 const apiMarcas = Express();
+const apiRendimientos = Express ();
 
 apiMarcas.get('', getMarcas)
 apiMarcas.post('', postMarcas)
+apiRendimientos.get('', getRendimientos)
+apiRendimientos.post('', postRendimientos)
 
-export {apiMarcas} 
+
+export {apiMarcas, apiRendimientos} 
+
