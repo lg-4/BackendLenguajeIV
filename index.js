@@ -45,21 +45,3 @@ app.use('/auth', authRouter)
 app.listen(3000)
 console.log('puerto 3000 activo') 
 
-
-
-app.get('/', (_, res)=>{ 
-    res.send(`<html>
-   <head>
-       <title>Login</title>
-   </head>
-   <body>
-       <form method= POST action="/auth">
-       nombre de usuario: <input type="text" name="user">
-       <br>
-       contraseña:<input type="password" name="pass">
-       <br>
-       <input type="submit" value="Iniciar Sesion"/>
-       </form>
-   </body> 
-</html>`) 
-})

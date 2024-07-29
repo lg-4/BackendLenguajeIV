@@ -4,7 +4,7 @@ import { mysqlConnection } from "../DATABASE/conexion.js";
 
 const authRouter = Router();
 
-authRouter.get("/autenticado", (req, res) => {
+authRouter.post("/autenticado", (req, res) => {
     try{
         const { cor_usuario, pas_usuario } = req.body;
 
@@ -20,9 +20,9 @@ authRouter.get("/autenticado", (req, res) => {
             }
 
             if (results.length > 0) {
-                res.status(200).send("Usuario autenticado");
+                res.status(200).send(`Usuario ${cor_usuario} autenticado`);
             } else {
-                res.status(401).send("Usuario no encontrado");
+                res.status(401).send(`Usuario ${cor_usuario} no autenticado`);
             }
         })
 
