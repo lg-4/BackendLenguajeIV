@@ -82,4 +82,21 @@ const putMarcas = async (req, res) => {
 };
 
 
-export {getMarcas, postMarcas, getRendimientos, postRendimientos, putMarcas}
+const putRendimientos = async (req, res) => {
+    let rend = req.body;
+    var sql = "CALL UpdateRendimiento(?, ?, ?, ?)";
+
+    mysqlConnection.query(sql, [rend.cod_vehiculo, rend.eficiencia, rend.fec_prueba, rend.resultado], (err, result, fields) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).json({ msg: 'Error al insertar la rendimiento' });
+        } else {
+            res.json({
+                result
+            });
+        }
+    });
+};
+
+
+export {getMarcas, postMarcas, getRendimientos, postRendimientos, putMarcas, putRendimientos}
