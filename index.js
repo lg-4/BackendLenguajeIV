@@ -14,18 +14,6 @@ import { apiRendimientos } from './Routes/MarcasRoutes.js'
 const app = Express()
 
 app.use(Express.json())
-
-
-app.use('/Comparar-vehiculos', apiVehiculos)
-app.use('/MostrarEstadisticas', apiEstadisticas)
-app.use('/MostrarPrecio', apiEstadisticas2)
-app.use('/MostrarMantenimientos', apiMantenimientos)
-app.use('/MostrarPromociones', apiPromDescuentos)
-app.use('/MostrarEspecificaciones', apiEspecificaciones)
-app.use('/MostrarMarcas', apiMarcas)
-app.use('/MostrarEvaluaciones', apiEvaluaciones)
-app.use('/MostrarResenias', apiResenias)
-app.use('/MostrarRendimientos', apiRendimientos)
 app.use('/comparar-vehiculos', apiVehiculos)
 app.use('/mostrar-estadisticas', apiEstadisticas)
 app.use('/mostrar-precio', apiEstadisticas2)
