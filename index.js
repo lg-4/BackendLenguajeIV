@@ -12,7 +12,7 @@ import { apiMarcas } from './Routes/MarcasRoutes.js'
 import { apiEvaluaciones } from './Routes/EstadisticasRoutes.js'
 import { apiResenias } from './Routes/EstadisticasRoutes.js'
 import { apiRendimientos } from './Routes/MarcasRoutes.js'
-import {authRouter} from './Routes/auth.js'
+import {authRouter} from './helpers/AuthByEmailPwd.js'
 
 
 const app = Express()
@@ -20,26 +20,16 @@ const app = Express()
 app.use(Express.json())
 app.use(cookieParser())
 
-app.use('/Comparar-vehiculos', apiVehiculos)
-app.use('/MostrarEstadisticas', apiEstadisticas)
-app.use('/MostrarPrecio', apiEstadisticas2)
-app.use('/MostrarMantenimientos', apiMantenimientos)
-app.use('/MostrarPromociones', apiPromDescuentos)
-app.use('/MostrarEspecificaciones', apiEspecificaciones)
-app.use('/MostrarMarcas', apiMarcas)
-app.use('/MostrarEvaluaciones', apiEvaluaciones)
-app.use('/MostrarResenias', apiResenias)
-app.use('/MostrarRendimientos', apiRendimientos)
 app.use('/comparar-vehiculos', apiVehiculos)
-app.use('/mostrar-estadisticas', apiEstadisticas)
+app.use('/Mmostrar-estadisticas', apiEstadisticas)
 app.use('/mostrar-precio', apiEstadisticas2)
 app.use('/mostrar-mantenimientos', apiMantenimientos)
 app.use('/mostrar-promociones', apiPromDescuentos)
 app.use('/mostrar-especificaciones', apiEspecificaciones)
 app.use('/mostrar-marcas', apiMarcas)
-app.use('/mostrar-valuaciones', apiEvaluaciones)
+app.use('/mostrar-evaluaciones', apiEvaluaciones)
 app.use('/mostrar-resenias', apiResenias)
-app.use('/mostrarRendimientos', apiRendimientos)
+app.use('/mostrar-rendimientos', apiRendimientos)
 app.use('/auth', authRouter)
 
 app.listen(3000)
