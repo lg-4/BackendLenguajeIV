@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { SignJWT } from "jose";
+import { SignJWT, jwtVerify } from "jose";
 import { authRouter, handleAuth } from '../helpers/AuthByEmailPwd.js';
 
 const authTokenRouter = Router();
 
-authTokenRouter.use("/autenticado", authRouter);
+
 
 authTokenRouter.post("/login", async (req, res) => {
     const { cor_usuario, pas_usuario } = req.body;
@@ -31,9 +31,17 @@ authTokenRouter.post("/login", async (req, res) => {
     }
 });
 
-authTokenRouter.get("/profile", (req, res) => {
-    console.log(req.cookies);
-    return res.send('Perfil del usuario');
+authTokenRouter.get("/profile", async(req, res) => {
+    const {autorization}= req.header
+    if(!autorization)return res.status(401)
+
+    try {
+        const encoder = new TextEncoder();
+       const jstData = await jwtVerify(autorization, encoder.encode(process.env.JWT_PRIVATE_KEY))
+
+    } catch (error) {
+        
+    }   
 });
 
 export { authTokenRouter };

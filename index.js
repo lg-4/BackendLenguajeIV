@@ -13,7 +13,6 @@ import { apiEvaluaciones } from './Routes/EstadisticasRoutes.js'
 import { apiResenias } from './Routes/EstadisticasRoutes.js'
 import { apiRendimientos } from './Routes/MarcasRoutes.js'
 import { authTokenRouter } from './Routes/AuthTokenRoutes.js'
-import { authSessionRouter } from './Routes/AuthSessionRoutes.js'
 
 const app = Express()
 
@@ -31,7 +30,6 @@ app.use('/mostrar-evaluaciones', apiEvaluaciones)
 app.use('/mostrar-resenias', apiResenias)
 app.use('/mostrar-rendimientos', apiRendimientos)
 app.use('/auth-token', authTokenRouter)
-app.use('/auth-session', authSessionRouter)
 
 
 
