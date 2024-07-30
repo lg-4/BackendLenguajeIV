@@ -37,8 +37,8 @@ const postEstadisticas = async (req, res) => {
 //-----------------------------------------------------------------------------------------
 
 //-------------------------------------HISTORIAL-----------------------------------------
-const getEstadisticas2= async (_, res) => {
-    mysqlConnection.query('CALL SelectEstadisticas2()', (err, rows, fields) => {
+const getPrecios= async (_, res) => {
+    mysqlConnection.query('CALL SelectPrecios()', (err, rows, fields) => {
         if (!err) {
             res.status(200).json(rows[0]);
         } else {
@@ -151,4 +151,4 @@ const postResenias = async (req, res) => {
     });
 };
 
-export{getEstadisticas, postEstadisticas, getEstadisticas2, getMantenimientos, postMantenimientos, getEvaluaciones, postEvaluaciones, getResenias, postResenias}
+export{getEstadisticas, postEstadisticas, getPrecios, getMantenimientos, postMantenimientos, getEvaluaciones, postEvaluaciones, getResenias, postResenias}
