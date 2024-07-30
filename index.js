@@ -21,7 +21,7 @@ app.use('/mostrar-mantenimientos', apiMantenimientos)
 app.use('/mostrar-promociones', apiPromDescuentos)
 app.use('/mostrar-especificaciones', apiEspecificaciones)
 app.use('/mostrar-marcas', apiMarcas)
-app.use('/mostrar-valuaciones', apiEvaluaciones)
+app.use('/mostrar-evaluaciones', apiEvaluaciones)
 app.use('/mostrar-resenias', apiResenias)
 app.use('/mostrar-rendimientos', apiRendimientos)
 

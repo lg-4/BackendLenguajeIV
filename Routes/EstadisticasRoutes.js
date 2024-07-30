@@ -1,5 +1,5 @@
 import Express from 'express'
-import { getEstadisticas, getPrecios, postEstadisticas, getMantenimientos, postMantenimientos, getEvaluaciones, postEvaluaciones, getResenias, postResenias, putEstadisticas } from '../controllers/EstadisticasController.js'
+import { getEstadisticas, getPrecios, postEstadisticas, getMantenimientos, postMantenimientos, getEvaluaciones, postEvaluaciones, getResenias, postResenias, putEstadisticas, } from '../controllers/EstadisticasController.js'
 
 const apiEstadisticas = Express();
 const apiPrecios = Express();
