@@ -4,6 +4,6 @@ import { getEspecificaciones } from '../controllers/EspecificacionesController.j
 const apiEspecificaciones = Express();
 
 
-apiEspecificaciones.get('', getEspecificaciones)
+apiEspecificaciones.get('',  getEspecificaciones)
 
 export {apiEspecificaciones}
