@@ -34,6 +34,30 @@ const postEstadisticas = async (req, res) => {
         }
     });
 };
+
+
+const putEstadisticas = async (req, res) => {
+    let est = req.body;
+    var sql = "CALL UpdateEstadisticas(?, ?, ?, ?, ?)";
+
+    mysqlConnection.query(sql, [
+        est.cod_vehiculo,        // Parámetro 1: p_cod_veh
+        est.nom_estadistica,     // Parámetro 2: nom_est
+        est.valor,               // Parámetro 3: valor_est
+        est.fec_estadistica,     // Parámetro 4: fec_estadistica
+        est.cod_estadistica      // Parámetro 5: p_cod_est
+    ], (err, result, fields) => {
+        if (err) {
+            console.error('Error al ejecutar la consulta:', err);
+            res.status(500).json({ msg: 'Error al ejecutar la consulta', error: err });
+        } else {
+            res.json({ result });
+        }
+    });
+};
+
+
+
 //-----------------------------------------------------------------------------------------
 
 //-------------------------------------HISTORIAL-----------------------------------------
@@ -151,4 +175,4 @@ const postResenias = async (req, res) => {
     });
 };
 
-export{getEstadisticas, postEstadisticas, getPrecios, getMantenimientos, postMantenimientos, getEvaluaciones, postEvaluaciones, getResenias, postResenias}
+export{getEstadisticas, postEstadisticas, getPrecios, getMantenimientos, postMantenimientos, getEvaluaciones, postEvaluaciones, getResenias, postResenias, putEstadisticas}
