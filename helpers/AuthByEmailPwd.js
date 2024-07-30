@@ -1,11 +1,10 @@
-
 import { Router } from "express";
 import { mysqlConnection } from "../DATABASE/conexion.js";
 
 const authRouter = Router();
 
 authRouter.post("/autenticado", (req, res) => {
-    try{
+    try {
         const { cor_usuario, pas_usuario } = req.body;
 
         if (!cor_usuario || !pas_usuario) {
@@ -14,7 +13,6 @@ authRouter.post("/autenticado", (req, res) => {
 
         const query = "SELECT * FROM USUARIOS WHERE cor_usuario = ? AND pas_usuario = ?";
         mysqlConnection.query(query, [cor_usuario, pas_usuario], (err, results) => {
-        
             if (err) {
                 return res.status(500).send("Error en el servidor");
             }
@@ -24,13 +22,27 @@ authRouter.post("/autenticado", (req, res) => {
             } else {
                 res.status(401).send(`Usuario ${cor_usuario} no autenticado`);
             }
-        })
-
-    }catch(e){
-       return res.status(400).send(e)
+        });
+    } catch (e) {
+        return res.status(400).send(e);
     }
-    
-    
-    });
+});
 
-export {authRouter};
+const handleAuth = (cor_usuario, pas_usuario) => {
+    return new Promise((resolve, reject) => {
+        const query = "SELECT * FROM USUARIOS WHERE cor_usuario = ? AND pas_usuario = ?";
+        mysqlConnection.query(query, [cor_usuario, pas_usuario], (err, results) => {
+            if (err) {
+                reject("Error en el servidor");
+            }
+
+            if (results.length > 0) {
+                resolve({ HOLA: cor_usuario });
+            } else {
+                reject("Usuario no autenticado");
+            }
+        });
+    });
+};
+
+export { authRouter, handleAuth };

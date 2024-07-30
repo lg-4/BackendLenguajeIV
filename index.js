@@ -12,8 +12,8 @@ import { apiMarcas } from './Routes/MarcasRoutes.js'
 import { apiEvaluaciones } from './Routes/EstadisticasRoutes.js'
 import { apiResenias } from './Routes/EstadisticasRoutes.js'
 import { apiRendimientos } from './Routes/MarcasRoutes.js'
-import {authRouter} from './helpers/AuthByEmailPwd.js'
-
+import { authTokenRouter } from './Routes/AuthTokenRoutes.js'
+import { authSessionRouter } from './Routes/AuthSessionRoutes.js'
 
 const app = Express()
 
@@ -30,7 +30,10 @@ app.use('/mostrar-marcas', apiMarcas)
 app.use('/mostrar-evaluaciones', apiEvaluaciones)
 app.use('/mostrar-resenias', apiResenias)
 app.use('/mostrar-rendimientos', apiRendimientos)
-app.use('/auth', authRouter)
+app.use('/auth-token', authTokenRouter)
+app.use('/auth-session', authSessionRouter)
+
+
 
 app.listen(3000)
 console.log('puerto 3000 activo') 

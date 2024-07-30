@@ -2,20 +2,20 @@
 import { Router } from "express"
 import { nanoid } from "nanoid"
 
-import authByEmailPwd from '../helpers/AuthByEmailPwd.js'
+import authByEmailPwd from './auth.js'
 
 const sessions=[]
 const authSessionRouter= Router()
 
 authSessionRouter.post("/login", (req, res)=>{
-    const {email, password}=req.body
+    const {cor_usuario, pas_usuario}=req.body
     
-    if(!email || !password){
+    if(!cor_usuario || !pas_usuario){
         return res.sendStatus(400)
     }
 
     try {
-         authByEmailPwd(email, password)
+         authByEmailPwd(cor_usuario, pas_usuario)
 
         const sessionId= nanoid()
         sessions.push({sessionId})
@@ -23,7 +23,7 @@ authSessionRouter.post("/login", (req, res)=>{
         res.cookie('sesionId',sessionId,{
             httpOnly: true
         })
-        return res.send(`Usuario ${user.name} autenticado`)
+        return res.send(`Usuario ${user.cor_usuario} autenticado`)
     
     } catch (error) {
         return res.sendStatus(401)
@@ -31,6 +31,7 @@ authSessionRouter.post("/login", (req, res)=>{
 })
 
 authSessionRouter.get("/profile", (req, res)=>{
-    req.cookies
+    console.log(req.cookies)
+     return res.send
 })
 export {authSessionRouter}

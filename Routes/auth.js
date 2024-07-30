@@ -1,4 +1,3 @@
-
 import { Router } from "express";
 import { mysqlConnection } from "../DATABASE/conexion.js";
 
@@ -33,4 +32,4 @@ authRouter.post("/autenticado", (req, res) => {
     
     });
 
-export {authRouter};
+export default {authRouter};
