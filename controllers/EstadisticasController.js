@@ -40,13 +40,7 @@ const putEstadisticas = async (req, res) => {
     let est = req.body;
     var sql = "CALL UpdateEstadisticas(?, ?, ?, ?, ?)";
 
-    mysqlConnection.query(sql, [
-        est.cod_vehiculo,        // Parámetro 1: p_cod_veh
-        est.nom_estadistica,     // Parámetro 2: nom_est
-        est.valor,               // Parámetro 3: valor_est
-        est.fec_estadistica,     // Parámetro 4: fec_estadistica
-        est.cod_estadistica      // Parámetro 5: p_cod_est
-    ], (err, result, fields) => {
+    mysqlConnection.query(sql, [est.cod_vehiculo, est.nom_estadistica, est.valor, est.fec_estadistica, est.cod_estadistica], (err, result, fields) => {
         if (err) {
             console.error('Error al ejecutar la consulta:', err);
             res.status(500).json({ msg: 'Error al ejecutar la consulta', error: err });
