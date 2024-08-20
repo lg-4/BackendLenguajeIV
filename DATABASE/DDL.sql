@@ -62,7 +62,7 @@ CREATE TABLE PROM_DESCUENTOS(
 
 CREATE TABLE VEHICULOS(
     cod_vehiculo BIGINT AUTO_INCREMENT PRIMARY KEY,
-    año_vehiculo VARCHAR(4),
+    anio_vehiculo VARCHAR(4),
     mot_vehiculo VARCHAR(50),
     pot_vehiculo VARCHAR(50),
     cod_marca BIGINT,

@@ -1,5 +1,6 @@
 import { mysqlConnection } from "../DATABASE/conexion.js"
 
+
 const getVehiculos= async (_, res) => {
      mysqlConnection.query (await 'CALL SelectVehiculos()', (err, rows, fields) => {
         if (!err) {
@@ -35,12 +36,23 @@ const postVehiculos = async (req, res) => {
 
 const putVehiculos = async (req, res) => {
     let veh = req.body;
-    var sql = "CALL UpdateVehiculos(?, ?, ?, ?, ?, ?, ?)";
+    let img = req.file; // Aquí obtienes el archivo cargado
 
-    mysqlConnection.query(sql, [veh.cod_vehiculo, veh.año_vehiculo, veh.mot_vehiculo, veh.pot_vehiculo, veh.cod_marca, veh.modelo, veh.cod_tipo_transmision], (err, result, fields) => {
+    var sql = "CALL UpdateVehiculos(?, ?, ?, ?, ?, ?, ?, ?)";
+
+    mysqlConnection.query(sql, [
+        veh.anio_vehiculo,
+        veh.mot_vehiculo,
+        veh.pot_vehiculo,
+        veh.cod_marca,
+        veh.modelo,
+        veh.cod_tipo_transmision,
+        img ? img.buffer : null, // Envía el buffer de la imagen si está presente
+        veh.cod_vehiculo
+    ], (err, result, fields) => {
         if (err) {
             console.error('Error al ejecutar la consulta:', err);
-            res.status(500).json({ msg: 'Error al insertar el vehículo' });
+            res.status(500).json({ msg: 'Error al actualizar el vehículo' });
         } else {
             res.json({
                 result
@@ -48,7 +60,6 @@ const putVehiculos = async (req, res) => {
         }
     });
 };
-
 
 
 const getVehiculo= async (req, res) => {

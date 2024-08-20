@@ -12,6 +12,7 @@ import { apiRendimientos } from './Routes/MarcasRoutes.js'
 
 
 const app = Express()
+app.use(Express.urlencoded({ extended: true }));
 
 app.use(Express.json())
 app.use('/comparar-vehiculos', apiVehiculos)
