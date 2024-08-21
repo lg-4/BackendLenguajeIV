@@ -24,7 +24,7 @@ app.use('/mostrar-especificaciones', apiEspecificaciones)
 app.use('/mostrar-marcas', apiMarcas)
 app.use('/mostrar-evaluaciones', apiEvaluaciones)
 app.use('/mostrar-resenias', apiResenias)
-app.use('/mostrarRendimientos', apiRendimientos)
+app.use('/mostrar-rendimientos', apiRendimientos)
 
 app.listen(3000)
 console.log('puerto 3000 activo') 
